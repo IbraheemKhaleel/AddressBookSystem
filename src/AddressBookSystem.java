@@ -8,7 +8,7 @@ public class AddressBookSystem {
 		AddressBook addressBook = new AddressBook();
 		Scanner sc = new Scanner(System.in);
 		int flag = 1 ;
-		while(flag == 1)
+		while (flag == 1)
 		{
 			System.out.println(" Welcome to address book program ");
 			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4.Exit");
