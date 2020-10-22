@@ -1,48 +1,35 @@
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class AddressBookSystem {
 	
-	static List<AddressBookSystemManage> contactList = new ArrayList<>();
-	
-	
-	//method for adding contacts
-	public  static void addContact()
-	{
-		Scanner input = new Scanner(System.in);
-		System.out.println(" Enter first name ");
-		String firstName = input.nextLine();
-		System.out.println(" Enter second name ");
-		String secondName = input.nextLine();
-		System.out.println(" Enter city name ");
-		String city = input.nextLine();
-		System.out.println(" Enter zip code ");
-		String zip = input.nextLine();
-		
-		AddressBookSystemManage addressBook = new AddressBookSystemManage(firstName,secondName,city,zip);
-		contactList.add(addressBook);
-	}
- 
 	//main function
 	public static void main(String[] args) {
+		AddressBook addressBook = new AddressBook();
 		Scanner sc = new Scanner(System.in);
 		int flag = 1 ;
 		while(flag == 1)
 		{
 			System.out.println(" Welcome to address book program ");
-			System.out.println(" Select a choice : 1. Add 2. Exit");
+			System.out.println(" Select a choice : 1. Add 2.Edit  3. Exit");
 			int choice = sc.nextInt();
 			switch(choice)
 			{
-				case 1 : addContact();
+				case 1 : addressBook.addContact();
 				break;
-				case 2 : flag = 0 ;
+				case 2 : if (addressBook.contactList.isEmpty())
+						 {
+							System.out.println(" Address book is empty ");
+							break;
+						 }
+						addressBook.editContact();
 				break;
-				default : System.out.println(" Enter a valid choice");
+				case 3 : flag = 0 ;
+				break;
+				default: System.out.println(" Enter a valid choice");
 				break;
 			}		
 		}
-		System.out.println(contactList);
+		System.out.println(addressBook.contactList);
 	}
 }
