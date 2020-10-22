@@ -10,7 +10,7 @@ public class AddressBook {
 	public  void addContact()
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.println(" Enter first name ");
+		System.out.println("Enter first name");
 		String firstName = input.nextLine();
 		System.out.println(" Enter second name ");
 		String secondName = input.nextLine();
