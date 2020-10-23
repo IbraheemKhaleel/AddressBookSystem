@@ -2,15 +2,14 @@
 import java.util.Scanner;
 
 public class AddressBookSystem {
-	
-	//main function
-	public static void main(String[] args) {
+	 
+	public static void entryOptions()
+	{
 		AddressBook addressBook = new AddressBook();
 		Scanner sc = new Scanner(System.in);
 		int flag = 1 ;
 		while (flag == 1)
 		{
-			System.out.println(" Welcome to address book program ");
 			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4.Exit");
 			int choice = sc.nextInt();
 			switch(choice)
@@ -39,4 +38,14 @@ public class AddressBookSystem {
 		}
 		System.out.println(addressBook.contactList);
 	}
+	
+	
+	//main function
+	public static void main(String[] args) {
+		System.out.println(" Welcome to address book program ");
+		entryOptions();
+		
+	}
+	
 }
+		
