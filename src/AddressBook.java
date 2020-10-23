@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ public class AddressBook {
 			if(firstName.equals(contactList.get(index).getFirstName()))
 			{
 				System.out.println(" The name already exists ");
-				AddressBookSystem.entryOptions();
+				addContact();
 			}
 		}
 		System.out.println(" Enter second name ");
@@ -42,15 +44,37 @@ public class AddressBook {
 		{
 			if (contactList.get(index).getFirstName().equals(fName))
 			{
-				contactList.remove(index);
-				AddressBook addressBook = new AddressBook();
-				addressBook.addContact();				
+				System.out.println(contactList.get(index));
+				Scanner editInput = new Scanner(System.in);
+				System.out.println(" Enter a choice 	1.first name 	2.last name 	3. city 	4.zip ");
+				int selection = nameInput.nextInt();
+				switch (selection) 
+				{
+					case 1: 	System.out.println(" Enter first name ");
+								String first_Name = editInput.nextLine();
+								contactList.get(index).setFirstName(first_Name);
+								System.out.println(contactList.get(index).getFirstName());
+					break;
+					case 2: 	System.out.println(" Enter last name ");
+								String second_Name = editInput.nextLine();
+								contactList.get(index).setLastName(second_Name);
+					break;
+					case 3:		System.out.println(" Enter city name ");
+								String input_City = editInput.nextLine();
+								contactList.get(index).setCity(input_City);
+					break;
+					case 4:		System.out.println(" Enter zip code ");
+								String input_Zip = editInput.nextLine();
+								contactList.get(index).setZip(input_Zip);
+
+					default:	System.out.println(" Enter valid input ");
+ 					break;
+				}
 			}
-			else
-			{
-				System.out.println(" There is no contact ");
-			}
+			
 		}
+		System.out.println(contactList);
+		
 	}
 	public void deleteContact()
 	{
@@ -68,6 +92,7 @@ public class AddressBook {
 			}
 		}
 	}
+	//method for search person's details with respect o their city
 	public void searchByCity()
 	{
 		Scanner cityInput = new Scanner(System.in);
@@ -80,6 +105,7 @@ public class AddressBook {
 		}
 		
 	}
+	//method for viewing person's details with respect o their city
 	public void viewPersonByCity()
 	{
 		Scanner cityViewInput = new Scanner(System.in);
@@ -91,5 +117,25 @@ public class AddressBook {
 				System.out.println(cityList);
 		}
 	}
+	public void countOfPersonsByCity()
+	{
+		int count = 0;
+		Collections.sort(contactList, new SortByName());
+		Scanner cityCountInput = new Scanner(System.in);
+		System.out.println(" Enter the city ");
+		String city = cityCountInput.nextLine();
+		for ( int index = 0 ; index+1 < contactList.size() ; index ++)
+		{
+			if (contactList.get(index).getCity().equals(city))
+			if (contactList.get(index).getCity().equals(contactList.get(index+1).getCity()))
+			{
+				count += 1 ;
+			}
+		
+		}
+		count++;
+		System.out.println(" The number of persons from the city " + city + " is " + count);
+	}
+	
 
 }
