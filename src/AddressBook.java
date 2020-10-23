@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AddressBook {
 	
-	
+	AddressBookSystem addressBookSystem = new  AddressBookSystem();
 	List<AddressBookSystemManage> contactList = new ArrayList<>();
 	// method to add contact
 	public  void addContact()
@@ -12,6 +12,14 @@ public class AddressBook {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter first name");
 		String firstName = input.nextLine();
+		for (int index = 0 ; index < contactList.size(); index ++)
+		{
+			if(firstName.equals(contactList.get(index).getFirstName()))
+			{
+				System.out.println(" The name already exists ");
+				AddressBookSystem.entryOptions();
+			}
+		}
 		System.out.println(" Enter second name ");
 		String secondName = input.nextLine();
 		System.out.println(" Enter city name ");
