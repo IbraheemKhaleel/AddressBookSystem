@@ -10,7 +10,7 @@ public class AddressBookSystem {
 		int flag = 1 ;
 		while (flag == 1)
 		{
-			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4. Search 5.Exit");
+			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4. Search 5. View person by city 6.Exit");
 			int choice = sc.nextInt();
 			switch(choice)
 			{
@@ -32,7 +32,14 @@ public class AddressBookSystem {
 				break;
 				case 4 : addressBook.searchByCity();
 				break;
-				case 5 : flag = 0 ;
+				case 5 :  if (addressBook.contactList.isEmpty())
+		 				  {
+							System.out.println(" Address book is empty ");
+							break;
+		 				  }
+						  addressBook.viewPersonByCity();
+				break;
+				case 6 : flag = 0 ;
 				break;
 				default: System.out.println(" Enter a valid choice");
 				break;
