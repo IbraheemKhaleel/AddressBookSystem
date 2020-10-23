@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -77,6 +79,17 @@ public class AddressBook {
 				System.out.println(cityList);
 		}
 		
+	}
+	public void viewPersonByCity()
+	{
+		Scanner cityViewInput = new Scanner(System.in);
+		System.out.println(" Enter the city name you want to get the person details");
+		String city = cityViewInput.nextLine();
+		for (AddressBookSystemManage cityList : contactList)
+		{
+			if ( cityList.getCity().equals(city))
+				System.out.println(cityList);
+		}
 	}
 
 }
