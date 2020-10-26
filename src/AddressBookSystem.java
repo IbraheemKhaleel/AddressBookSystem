@@ -53,7 +53,7 @@ public class AddressBookSystem {
 		int flag = 1 ;
 		while (flag == 1)
 		{
-			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4. Search 5. View person by city 6. count of persons with same city 7. Sorting by name 8.exit ");
+			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4. Search 5. View person by city 6. count of persons with same city 7. Sorting by name 8.Sorting by city 9. exit ");
 			int choice = sc.nextInt();
 			switch(choice)
 			{
@@ -91,16 +91,17 @@ public class AddressBookSystem {
 				  		} 
 						addressBook.sortingByName();
 				break;
-				case 8 : registerEntry();
-						 flag = 0;
+				case 8 : addressBook.sortingByCity();
+				break;
+				case 9 : registerEntry();
+				flag = 0;
 				break;
 				default: System.out.println(" Enter a valid choice");
 				break;
 			}		
 		}
 	}
-	
-	
+
 	//main function
 	public static void main(String[] args) {
 		System.out.println(" Welcome to address book program ");
