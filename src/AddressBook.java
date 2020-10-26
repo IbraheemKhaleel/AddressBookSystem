@@ -149,6 +149,10 @@ public class AddressBook {
 		System.out.println(contactList);
 	}
 	
-	
+	public void sortingByCity() {
+		Collections.sort(contactList, new SortByCityName());
+		System.out.println(contactList);
+		
+	}
 
 }
