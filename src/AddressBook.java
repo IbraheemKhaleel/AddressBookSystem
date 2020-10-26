@@ -143,10 +143,12 @@ public class AddressBook {
 		count++;
 		System.out.println(" The number of persons from the city " + city + " is " + count);
 	}
+	//method to sort person name by java stream approach
 	public void sortingByName()
 	{
-		Collections.sort(contactList, new SortByName());
-		System.out.println(contactList);
+		Comparator<AddressBookSystemManage> sortingNameList = (firstAddressObject , secondAddessObject) -> firstAddressObject.getFirstName().compareTo(secondAddessObject.getFirstName());
+		List<AddressBookSystemManage> sortedNames = contactList.stream().sorted(sortingNameList).collect(Collectors.toList());
+		System.out.println(sortedNames);
 	}
 	
 	
