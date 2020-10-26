@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class AddressBook {
 	
-	AddressBookSystem addressBookSystem = new  AddressBookSystem();
 	List<AddressBookSystemManage> contactList = new ArrayList<>();
+	AddressBookSystem addressBookSystem =   new AddressBookSystem();
 	// method to add contact
 	public  void addContact()
 	{
@@ -76,6 +76,7 @@ public class AddressBook {
 		System.out.println(contactList);
 		
 	}
+	// method for deleting a contact
 	public void deleteContact()
 	{
 		Scanner deleteNameInput = new Scanner(System.in);
@@ -105,6 +106,11 @@ public class AddressBook {
 		}
 		
 	}
+	//method for viewing persons details
+	public void viewPersonDetails()
+	{
+		System.out.println(contactList);
+	}
 	//method for viewing person's details with respect o their city
 	public void viewPersonByCity()
 	{
@@ -117,10 +123,11 @@ public class AddressBook {
 				System.out.println(cityList);
 		}
 	}
+	//method for count number of persons in same city
 	public void countOfPersonsByCity()
 	{
 		int count = 0;
-		Collections.sort(contactList, new SortByName());
+		Collections.sort(contactList, new SortByCityName());
 		Scanner cityCountInput = new Scanner(System.in);
 		System.out.println(" Enter the city ");
 		String city = cityCountInput.nextLine();
@@ -136,6 +143,12 @@ public class AddressBook {
 		count++;
 		System.out.println(" The number of persons from the city " + city + " is " + count);
 	}
+	public void sortingByName()
+	{
+		Collections.sort(contactList, new SortByName());
+		System.out.println(contactList);
+	}
+	
 	
 
 }
