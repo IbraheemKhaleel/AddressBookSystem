@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 	
@@ -143,16 +146,20 @@ public class AddressBook {
 		count++;
 		System.out.println(" The number of persons from the city " + city + " is " + count);
 	}
+	//sorting by name using stream 
 	public void sortingByName()
 	{
-		Collections.sort(contactList, new SortByName());
-		System.out.println(contactList);
+		Comparator<AddressBookSystemManage> sortingNameList = (firstAddressObject , secondAddessObject) -> firstAddressObject.getFirstName().compareTo(secondAddessObject.getFirstName());
+		List<AddressBookSystemManage> sortedNames = contactList.stream().sorted(sortingNameList).collect(Collectors.toList());
+		System.out.println(sortedNames);
+	}
+	//stream approach for sorting by city
+	public void sortingByCity()
+	{
+		Comparator<AddressBookSystemManage> sortingCityList = (firstAddressObject , secondAddessObject) -> firstAddressObject.getCity().compareTo(secondAddessObject.getCity());
+		List<AddressBookSystemManage> sortedCity = contactList.stream().sorted(sortingCityList).collect(Collectors.toList());
+		System.out.println(sortedCity);
 	}
 	
-	public void sortingByCity() {
-		Collections.sort(contactList, new SortByCityName());
-		System.out.println(contactList);
-		
-	}
 
 }
