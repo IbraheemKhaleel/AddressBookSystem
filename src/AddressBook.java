@@ -1,3 +1,17 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -5,12 +19,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import javax.sound.sampled.Line;
 
 public class AddressBook {
 	
 	List<AddressBookSystemManage> contactList = new ArrayList<>();
 	AddressBookSystem addressBookSystem =   new AddressBookSystem();
 	// method to add contact
+	/**
+	 * 
+	 */
 	public  void addContact()
 	{
 		Scanner input = new Scanner(System.in);
@@ -32,7 +52,7 @@ public class AddressBook {
 		String zip = input.nextLine();
 		
 		AddressBookSystemManage addressBookSystem = new AddressBookSystemManage(firstName,secondName,city,zip);
-		contactList.add(addressBookSystem);
+		contactList.add(addressBookSystem)	;	
 	}
 	// method for editing existing contact
 	public void editContact()
@@ -150,7 +170,47 @@ public class AddressBook {
 		List<AddressBookSystemManage> sortedNames = contactList.stream().sorted(sortingNameList).collect(Collectors.toList());
 		System.out.println(sortedNames);
 	}
+	//java stream approach to sort entries by city name
+	public void sortingByCity()
+	{
+		Comparator<AddressBookSystemManage> sortingCityList = (firtsAddressObject , secondAddressObject ) -> firtsAddressObject.getCity().compareTo(secondAddressObject.getCity());
+		List<AddressBookSystemManage> sortedCity = contactList.stream().sorted(sortingCityList).collect(Collectors.toList());
+		System.out.println(sortedCity);
+	}
 	
-	
-
+	//method to write the address book into file
+	public void writingContactDetailsToFile()
+	{
+		List<String> allContactList = new ArrayList<String>() ;
+		if (contactList.size() == 0 )
+		{
+			System.out.println("Contact book is empty");
+		}
+		else 
+		{
+			for (int index = 0 ; index < contactList.size() ; index ++ )
+				allContactList.add(contactList.get(index).toString()) ;
+		}
+		File file = new File ("C:\\Users\\Ibrahim Khaleel\\eclipse-workspace\\AddressBookSystem\\contactbook.txt") ;
+		Writer writer = null ;
+		BufferedWriter bufferedWriter = null ; 
+		try {
+			writer  = new FileWriter (file) ;
+			bufferedWriter = new BufferedWriter(writer) ;
+			for ( String lines : allContactList ) {
+				lines = lines + System.getProperty(lines) ;
+				bufferedWriter.write(lines);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+            if (bufferedWriter != null && writer != null)
+                try {
+                    bufferedWriter.close();
+                    writer.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+        }			
+	}	      
 }
