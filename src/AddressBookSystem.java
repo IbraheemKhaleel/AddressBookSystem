@@ -8,7 +8,7 @@ public class AddressBookSystem {
 	
 	public static void registerEntry()
 	{
-		AddressBookSystem addressBookSystem = new AddressBookSystem();
+		AddressBookSystem addressBookSystem = new AddressBookSystem() ;
 		Scanner registerInput = new Scanner(System.in);
 		System.out.println(" Enter choice \n1. creating new addressbook \n2. adding contacts in existing register \n3. exit ");
 		int registerEntry = registerInput.nextInt();
