@@ -1,7 +1,11 @@
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookSystem {
 	
@@ -35,7 +39,7 @@ public class AddressBookSystem {
 							String nameOfExistingRegister = existingNameInput.nextLine();	
 							if (multipleAddressMap.containsKey(nameOfExistingRegister))
 		   					{
-								multipleAddressMap.get(nameOfExistingRegister).entryOptions();		
+								multipleAddressMap.get(nameOfExistingRegister).entryOptions();
 		   					}
 		   					else
 		   						System.out.println(" address book is not found ");
@@ -53,7 +57,9 @@ public class AddressBookSystem {
 		int flag = 1 ;
 		while (flag == 1)
 		{
-			System.out.println(" Select a choice : 1. Add 2.Edit  3. Delete 4. Search 5. View person by city 6. count of persons with same city 7. Sorting by name 8.exit ");
+			System.out.println("Select a choice : 1. Add 2.Edit  3. Delete 4. Search "
+								+ "5. View person by city 6. count of persons with same city"
+								+ "7. Sorting by name 8. Writing in file  9.json 10. csv  11.exit ");
 			int choice = sc.nextInt();
 			switch(choice)
 			{
@@ -91,16 +97,17 @@ public class AddressBookSystem {
 				  		} 
 						addressBook.sortingByName();
 				break;
-				case 8 : registerEntry();
-						 flag = 0;
-				break;
+				case 8 : addressBook.writingContactDetailsToFile() ;
+				case 11 : registerEntry();
+				 flag = 0;
+				 break;
+				
 				default: System.out.println(" Enter a valid choice");
 				break;
 			}		
 		}
 	}
-	
-	
+	 
 	//main function
 	public static void main(String[] args) {
 		System.out.println(" Welcome to address book program ");
