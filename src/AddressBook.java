@@ -16,14 +16,14 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class AddressBook {
-	
+
 	List<AddressBookSystemManage> contactList = new ArrayList<>();
 	AddressBookSystem addressBookSystem =   new AddressBookSystem();
 	// method to add contact
 	public  void addContact()
 	{
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter first name");
+		Scanner input = new Scanner(System.in) ;
+		System.out.println("Enter first name") ;
 		String firstName = input.nextLine();
 		for (int index = 0 ; index < contactList.size(); index ++)
 		{
